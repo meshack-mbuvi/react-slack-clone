@@ -17,20 +17,74 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const isPasswordValid = () => {
+    if (password.length < 6 || passwordConfirm.length < 6) {
+      return false;
+    }
+    if (password !== passwordConfirm) {
+      return false;
+    }
+    return true;
+  };
+
+  const isFormEmpty = () => {
+    return (
+      !username.length ||
+      !email.length ||
+      !password.length ||
+      !passwordConfirm.length
+    );
+  };
+
+  const isFormValid = () => {
+    let error;
+    if (isFormEmpty()) {
+      error = { message: 'Fill in all fields.' };
+      setErrors([error]);
+      return false;
+    } else if (!isPasswordValid()) {
+      error = { message: 'Password is invalid.' };
+      setErrors([error]);
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((createdUser) => {
-        console.log({ createdUser });
-      })
-      .catch((error) => {
-        console.log({ error });
-      });
+
+    if (isFormValid()) {
+      setLoading(true);
+      setErrors([]);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((createdUser) => {
+          setLoading(false);
+          console.log({ createdUser });
+        })
+        .catch((error) => {
+          console.log({ error });
+          setErrors([error]);
+          setLoading(false);
+        });
+    }
   };
 
+  const displayErrors = (errors) =>
+    errors.map((error, index) => <p key={index}>{error.message}</p>);
+
+  const handleInputError = (errors, inputName) => {
+    return errors.some((error) =>
+      error.message.toLowerCase().includes(inputName)
+    )
+      ? 'error'
+      : '';
+  };
   return (
     <Grid textAlign='center' verticalAlign='middle' className='app'>
       <Grid.Column style={{ maxWidth: 450 }}>
@@ -60,6 +114,7 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
               type='email'
               placeholder='Email Address'
+              className={handleInputError(errors, 'email')}
             />
 
             <Form.Input
@@ -71,6 +126,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
               type='password'
               placeholder='Password'
+              className={handleInputError(errors, 'password')}
             />
 
             <Form.Input
@@ -82,14 +138,29 @@ const Register = () => {
               onChange={(e) => setPasswordConfirm(e.target.value)}
               type='password'
               placeholder='Password Confirm'
+              className={handleInputError(errors, 'password')}
             />
-            <Button color='orange' fluid size='large'>
+            <Button
+              disabled={loading}
+              className={loading ? 'loading' : ''}
+              color='orange'
+              fluid
+              size='large'
+            >
               Submit
             </Button>
           </Segment>
         </Form>
+
+        {errors.length > 0 && (
+          <Message error>
+            <h3>Error</h3>
+            {displayErrors(errors)}
+          </Message>
+        )}
+
         <Message>
-          ALready a user? <Link to='/login'>Login</Link>
+          Already a user? <Link to='/login'>Login</Link>
         </Message>
       </Grid.Column>
     </Grid>
