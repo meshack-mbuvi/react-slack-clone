@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import md5 from 'md5';
 import {
   Grid,
   Form,
@@ -19,6 +20,7 @@ const Register = () => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
+  const usersRef = firebase.database().ref('users');
 
   const isPasswordValid = () => {
     if (password.length < 6 || passwordConfirm.length < 6) {
@@ -54,24 +56,38 @@ const Register = () => {
     }
   };
 
-  const onSubmit = (e) => {
+  const saveUser = async (createdUser) => {
+    await usersRef.child(createdUser.user.uid).set({
+      name: createdUser.user.displayName,
+      avatar: createdUser.user.photoURL,
+    });
+  };
+
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     if (isFormValid()) {
-      setLoading(true);
-      setErrors([]);
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((createdUser) => {
-          setLoading(false);
-          console.log({ createdUser });
-        })
-        .catch((error) => {
-          console.log({ error });
-          setErrors([error]);
-          setLoading(false);
+      try {
+        setLoading(true);
+        setErrors([]);
+
+        const createdUser = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password);
+        await createdUser.user.updateProfile({
+          displayName: username,
+          photoURL: `http://gravatar.com/avatar/${md5(
+            createdUser.user.email
+          )}?d=identicon`,
         });
+
+        await saveUser(createdUser);
+        console.log('user saved.');
+        setLoading(false);
+      } catch (error) {
+        setErrors([error]);
+        setLoading(false);
+      }
     }
   };
 
