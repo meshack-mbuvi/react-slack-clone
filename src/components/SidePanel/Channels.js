@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Menu, Icon, Modal, Form, Input, Button } from 'semantic-ui-react';
 import firebase from '../../firebase';
 
-const Channels = ({ currentUser }) => {
+import { connect } from 'react-redux';
+import { setCurrentChannel } from '../../actions';
+
+const Channels = (props) => {
+  const { currentUser, setCurrentChannel } = props;
   const [modal, setModal] = useState(false);
   const [channelName, setChannelName] = useState('');
   const [channelDetails, setChannelDetails] = useState('');
@@ -55,12 +59,16 @@ const Channels = ({ currentUser }) => {
     }
   };
 
+  const changeChannel = (channel) => {
+    setCurrentChannel(channel);
+  };
+
   const displayChannels = () =>
     channels.length > 0 &&
     channels.map((channel) => (
       <Menu.Item
         key={channel.id}
-        onClick={() => console.log({ channel })}
+        onClick={() => changeChannel(channel)}
         name={channel.name}
         style={{ opacity: 0.7 }}
       >
@@ -114,4 +122,4 @@ const Channels = ({ currentUser }) => {
   );
 };
 
-export default Channels;
+export default connect(null, { setCurrentChannel })(Channels);
