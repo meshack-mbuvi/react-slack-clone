@@ -3,19 +3,26 @@ import { Menu, Icon, Modal, Form, Input, Button } from 'semantic-ui-react';
 import firebase from '../../firebase';
 
 import { connect } from 'react-redux';
-import { setCurrentChannel } from '../../actions';
+import { setCurrentChannel, setChannels } from '../../actions';
 
 const Channels = (props) => {
-  const { currentUser, setCurrentChannel } = props;
+  const {
+    currentUser,
+    setCurrentChannel,
+    setChannels,
+    channels,
+    currentChannel,
+  } = props;
+
   const [modal, setModal] = useState(false);
   const [channelName, setChannelName] = useState('');
   const [channelDetails, setChannelDetails] = useState('');
   const [channelsRef] = useState(firebase.database().ref('channels'));
-  const [channels, setChannels] = useState([]);
+  const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     channelsRef.on('child_added', (snap) => {
-      setChannels((channels) => [...channels, snap.val()]);
+      setChannels(snap.val());
     });
   }, []);
 
@@ -46,7 +53,6 @@ const Channels = (props) => {
       setChannelDetails('');
       setChannelName('');
       closeModal();
-      console.log('channel added.');
     } catch (error) {
       console.log({ error });
     }
@@ -63,18 +69,30 @@ const Channels = (props) => {
     setCurrentChannel(channel);
   };
 
-  const displayChannels = () =>
-    channels.length > 0 &&
-    channels.map((channel) => (
-      <Menu.Item
-        key={channel.id}
-        onClick={() => changeChannel(channel)}
-        name={channel.name}
-        style={{ opacity: 0.7 }}
-      >
-        # {channel.name}
-      </Menu.Item>
-    ));
+  const displayChannels = () => {
+    if (firstLoad && channels.length) {
+      setFirstLoad(false);
+      changeChannel(channels[0]);
+    }
+
+    return (
+      channels.length > 0 &&
+      channels.map((channel) => {
+        return (
+          <Menu.Item
+            key={channel.id}
+            onClick={() => changeChannel(channel)}
+            name={channel.name}
+            style={{ opacity: 0.7 }}
+            active={channel.id === currentChannel.id}
+          >
+            # {channel.name}
+          </Menu.Item>
+        );
+      })
+    );
+  };
+
   return (
     <>
       <Menu.Menu style={{ paddingBottom: '2em' }}>
@@ -122,4 +140,13 @@ const Channels = (props) => {
   );
 };
 
-export default connect(null, { setCurrentChannel })(Channels);
+const mapStateToProps = ({ channel }) => {
+  return {
+    channels: channel.channels,
+    currentChannel: channel.currentChannel,
+  };
+};
+
+export default connect(mapStateToProps, { setCurrentChannel, setChannels })(
+  Channels
+);

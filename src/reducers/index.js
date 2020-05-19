@@ -25,8 +25,10 @@ const user_reducer = (state = initialUserState, action) => {
 };
 
 const initialChannelState = {
-  currentChannel: null,
+  currentChannel: { id: '' },
+  channels: [],
 };
+
 const channel_reducer = (state = initialChannelState, action) => {
   switch (action.type) {
     case actionTypes.SET_CURRENT_CHANNEL:
@@ -34,6 +36,13 @@ const channel_reducer = (state = initialChannelState, action) => {
         ...state,
         currentChannel: action.payload.currentChannel,
       };
+
+    case actionTypes.SET_CHANNELS:
+      return {
+        ...state,
+        channels: [...state.channels, action.payload.channel],
+      };
+
     default:
       return state;
   }

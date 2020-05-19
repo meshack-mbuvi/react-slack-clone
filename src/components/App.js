@@ -19,6 +19,7 @@ const App = ({ currentUser }) => (
     </Grid.Column>
   </Grid>
 );
+
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
 });
