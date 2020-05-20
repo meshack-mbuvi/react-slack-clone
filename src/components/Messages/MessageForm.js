@@ -56,6 +56,10 @@ const MessageForm = (props) => {
     setMessage(e.target.value);
   };
 
+  const uploadFile = (file, metadata) => {
+    
+  }
+
   return (
     <Segment className='message__form'>
       <Input
@@ -90,7 +94,7 @@ const MessageForm = (props) => {
           icon='cloud upload'
           onClick={openModal}
         />
-        <FileModal modal={modal} closeModal={closeModal} />
+        <FileModal modal={modal} closeModal={closeModal} uploadFile={uploadFile}/>
       </Button.Group>
     </Segment>
   );
