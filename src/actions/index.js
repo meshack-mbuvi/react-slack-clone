@@ -34,3 +34,6 @@ export const setChannels = (channel) => {
     },
   };
 };
+
+// message actions
+// export const setMessages = ()

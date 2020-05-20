@@ -5,3 +5,6 @@ export const CLEAR_USER = 'CLEAR_USER';
 // channel action types
 export const SET_CURRENT_CHANNEL = 'SET_CURRENT_CHANNEL';
 export const SET_CHANNELS = 'SET_CHANNELS';
+
+// Message action types
+export const SET_MESSAGES = 'SET_MESSAGES';

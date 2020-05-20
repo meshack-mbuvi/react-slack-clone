@@ -84,7 +84,7 @@ const Channels = (props) => {
             onClick={() => changeChannel(channel)}
             name={channel.name}
             style={{ opacity: 0.7 }}
-            active={channel.id === currentChannel.id}
+            active={channel.id === currentChannel && currentChannel.id}
           >
             # {channel.name}
           </Menu.Item>
