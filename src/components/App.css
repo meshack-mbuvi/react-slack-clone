@@ -27,3 +27,27 @@ body,
   border-left: 2px solid orange;
   padding-left: 8px;
 }
+
+.message__image {
+  padding: 1em;
+}
+
+i.circular.icon {
+  background-color: #2bac76 !important;
+  color: #2bac76 !important;
+  border-radius: 12px !important;
+  max-height: 12px !important;
+  max-width: 12px !important;
+  padding: 0px;
+}
+
+.ui.segment {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  height: 1rem;
+}
+
+.ui.segment {
+  border: none !important;
+}

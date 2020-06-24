@@ -6,12 +6,11 @@ export const ColorPanel = () => {
     <Sidebar
       as={Menu}
       icon='labeled'
-      inverted
       vertical
       visible
       width='very thin'
+      style={{ background: '#3F0E40' }}
     >
-      <Divider />
       <Button icon='add' size='small' color='blue' />
     </Sidebar>
   );

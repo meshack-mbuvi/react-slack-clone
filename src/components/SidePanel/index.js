@@ -10,7 +10,7 @@ export const SidePanel = ({ currentUser }) => {
       inverted
       fixed='left'
       vertical
-      style={{ background: '#4c3c4c', fontSize: '1.2rem' }}
+      style={{ background: '#3F0E40', fontSize: '1.2rem' }}
     >
       <UserPanel currentUser={currentUser} />
       <Channels currentUser={currentUser} />

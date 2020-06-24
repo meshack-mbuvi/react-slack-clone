@@ -98,9 +98,9 @@ const Channels = (props) => {
       <Menu.Menu style={{ paddingBottom: '2em' }}>
         <Menu.Item>
           <span>
-            <Icon name='exchange' /> CHANNELS
+            <Icon name='exchange' /> Channels
           </span>{' '}
-          ({channels.length}) <Icon name='add' onClick={openModal} />
+          <Icon name='add' onClick={openModal} />
         </Menu.Item>
       </Menu.Menu>
       {displayChannels()}

@@ -3,15 +3,18 @@ import './App.css';
 import { Grid } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import ColorPanel from './ColorPanel/ColorPanel';
-import Messages from './Messages/Messages';
-import SidePanel from './SidePanel/SidePanel';
-import MetaPanel from './MetaPanel/MetaPanel';
+import Messages from './Messages';
+import SidePanel from './SidePanel';
+import MetaPanel from './MetaPanel';
 
 const App = ({ currentUser, currentChannel }) => (
   <Grid columns='equal' className='app' style={{ background: '#eee' }}>
-    <ColorPanel />
-    <SidePanel key={currentUser && currentUser.uid} currentUser={currentUser} />
-
+    <Grid.Column>
+      <SidePanel
+        key={currentUser && currentUser.uid}
+        currentUser={currentUser}
+      />
+    </Grid.Column>
     <Grid.Column style={{ marginLeft: 320 }}>
       <Messages
         key={currentChannel && currentChannel.id}
