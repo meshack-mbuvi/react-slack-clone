@@ -6,6 +6,13 @@ body,
   padding: 1em;
 }
 
+.ui.grid {
+  padding: 1rem 0 !important;
+}
+
+.ui.grid > .column:not(.row) {
+  padding-top: 0 !important;
+}
 /* Messages.js */
 .messages {
   height: 340px;
@@ -46,8 +53,18 @@ i.circular.icon {
   box-shadow: none !important;
   padding: 0 !important;
   height: 1rem;
+  margin: 0 1rem;
+  border: none !important;
 }
 
-.ui.segment {
-  border: none !important;
+.ui.menu .item {
+  padding: 5px 15px !important;
+}
+
+.ui.list > .item:hover {
+  cursor: pointer;
+  background: green !important;
+}
+.ui.list > .item.active {
+  background: #1164a3 !important;
 }

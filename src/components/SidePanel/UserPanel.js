@@ -36,7 +36,6 @@ const UserPanel = (props) => {
         <Grid.Row
           style={{
             padding: '1.2rem',
-            margin: 0,
           }}
         >
           {/* App header */}

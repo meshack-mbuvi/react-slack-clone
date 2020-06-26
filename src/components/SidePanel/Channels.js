@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Icon, Modal, Form, Input, Button } from 'semantic-ui-react';
+import {
+  Menu,
+  Icon,
+  Modal,
+  Form,
+  Input,
+  Button,
+  Segment,
+  List,
+} from 'semantic-ui-react';
 import firebase from '../../firebase';
 
 import { connect } from 'react-redux';
 import { setCurrentChannel, setChannels } from '../../actions';
+import CustomDisplayComponent from '../utils/CustomDisplayComponent';
 
 const Channels = (props) => {
   const {
@@ -18,6 +28,7 @@ const Channels = (props) => {
   const [channelName, setChannelName] = useState('');
   const [channelDetails, setChannelDetails] = useState('');
   const [channelsRef] = useState(firebase.database().ref('channels'));
+
   const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
@@ -79,15 +90,15 @@ const Channels = (props) => {
       channels.length > 0 &&
       channels.map((channel) => {
         return (
-          <Menu.Item
+          <List.Item
             key={channel.id}
             onClick={() => changeChannel(channel)}
             name={channel.name}
             style={{ opacity: 0.7 }}
-            active={channel.id === currentChannel && currentChannel.id}
+            className={channel.id === currentChannel.id ? 'active' : ''}
           >
             # {channel.name}
-          </Menu.Item>
+          </List.Item>
         );
       })
     );
@@ -95,15 +106,9 @@ const Channels = (props) => {
 
   return (
     <>
-      <Menu.Menu style={{ paddingBottom: '2em' }}>
-        <Menu.Item>
-          <span>
-            <Icon name='exchange' /> Channels
-          </span>{' '}
-          <Icon name='add' onClick={openModal} />
-        </Menu.Item>
-      </Menu.Menu>
-      {displayChannels()}
+      <CustomDisplayComponent title='Channels'>
+        <List>{displayChannels()}</List>
+      </CustomDisplayComponent>
 
       <Modal basic open={modal} onClose={closeModal}>
         <Modal.Header>Add a channel</Modal.Header>
