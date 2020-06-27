@@ -13,9 +13,9 @@ body,
 .ui.grid > .column:not(.row) {
   padding-top: 0 !important;
 }
+
 /* Messages.js */
 .messages {
-  height: 340px;
   overflow-y: scroll;
 }
 
@@ -23,16 +23,10 @@ body,
 .message__form {
   position: fixed !important;
   bottom: 1em;
-  margin-left: 320px !important;
+  /* margin-left: 320px !important; */
   left: 0;
   right: 1em;
   z-index: 200;
-}
-
-/* Message.js */
-.message__self {
-  border-left: 2px solid orange;
-  padding-left: 8px;
 }
 
 .message__image {
@@ -45,7 +39,7 @@ i.circular.icon {
   border-radius: 12px !important;
   max-height: 12px !important;
   max-width: 12px !important;
-  padding: 0px;
+  padding: 0px !important;
 }
 
 .ui.segment {
@@ -67,4 +61,8 @@ i.circular.icon {
 }
 .ui.list > .item.active {
   background: #1164a3 !important;
+}
+
+.ui.comments .comment {
+  margin: 0.5rem 0 0 1rem !important;
 }

@@ -8,14 +8,15 @@ import SidePanel from './SidePanel';
 import MetaPanel from './MetaPanel';
 
 const App = ({ currentUser, currentChannel }) => (
-  <Grid columns='equal' className='app' style={{ background: '#eee' }}>
-    <Grid.Column>
+  <Grid className='app' style={{ background: '#fff' }} divided>
+    <Grid.Column width='3'>
       <SidePanel
         key={currentUser && currentUser.uid}
         currentUser={currentUser}
       />
     </Grid.Column>
-    <Grid.Column style={{ marginLeft: 320 }}>
+
+    <Grid.Column width='8'>
       <Messages
         key={currentChannel && currentChannel.id}
         currentChannel={currentChannel}
