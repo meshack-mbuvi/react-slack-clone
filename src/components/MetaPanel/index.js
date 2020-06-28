@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const MetaPanel = () => {
-  return <div>MetaPanel</div>;
+  return <div>Message thread</div>;
 };
 
 export default MetaPanel;

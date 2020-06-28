@@ -5,6 +5,7 @@ import { Segment, Comment } from 'semantic-ui-react';
 import _ from 'underscore';
 import moment from 'moment';
 import MessageDivider from './MessageDivider';
+import InputForm from './Form';
 
 const Messages = ({ currentChannel, currentUser }) => {
   const [messagesRef] = useState(firebase.database().ref('messages'));
@@ -64,6 +65,11 @@ const Messages = ({ currentChannel, currentUser }) => {
         <Comment.Group className='messages'>
           {displayMessages(messages)}
         </Comment.Group>
+        <InputForm
+          messagesRef={messagesRef}
+          currentChannel={currentChannel}
+          currentUser={currentUser}
+        />
       </Segment>
     </>
   );

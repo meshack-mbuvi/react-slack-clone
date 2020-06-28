@@ -8,7 +8,7 @@ import SidePanel from './SidePanel';
 import MetaPanel from './MetaPanel';
 
 const App = ({ currentUser, currentChannel }) => (
-  <Grid className='app' style={{ background: '#fff' }} divided>
+  <Grid className='app' style={{ background: '#fff' }}>
     <Grid.Column width='3'>
       <SidePanel
         key={currentUser && currentUser.uid}

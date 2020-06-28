@@ -7,6 +7,7 @@ import {
   Input,
   Button,
   Segment,
+  Divider,
   List,
 } from 'semantic-ui-react';
 import firebase from '../../firebase';
@@ -108,6 +109,7 @@ const Channels = (props) => {
     <>
       <CustomDisplayComponent title='Channels'>
         <List>{displayChannels()}</List>
+        <Divider />
       </CustomDisplayComponent>
 
       <Modal basic open={modal} onClose={closeModal}>

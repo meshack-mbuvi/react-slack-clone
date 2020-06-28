@@ -15,6 +15,8 @@ import { Link } from 'react-router-dom';
 
 const Register = () => {
   const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [secondName, setSecondName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -82,7 +84,6 @@ const Register = () => {
         });
 
         await saveUser(createdUser);
-        console.log('user saved.');
         setLoading(false);
       } catch (error) {
         setErrors([error]);
@@ -106,7 +107,7 @@ const Register = () => {
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h1' icon color='orange' textAlign='center'>
           <Icon name='puzzle piece' color='orange' />
-          Register for DevChat
+          Create an Account. Its very simple to do so.
         </Header>
         <Form size='large' onSubmit={onSubmit}>
           <Segment stacked>
@@ -119,6 +120,28 @@ const Register = () => {
               onChange={(e) => setUsername(e.target.value)}
               type='text'
               placeholder='Username'
+            />
+
+            <Form.Input
+              fluid
+              name='firstName'
+              icon='user'
+              value={username}
+              iconPosition='left'
+              onChange={(e) => setFirstName(e.target.value)}
+              type='text'
+              placeholder='First Name'
+            />
+
+            <Form.Input
+              fluid
+              name='secondName'
+              icon='user'
+              value={username}
+              iconPosition='left'
+              onChange={(e) => setSecondName(e.target.value)}
+              type='text'
+              placeholder='Second Name'
             />
 
             <Form.Input

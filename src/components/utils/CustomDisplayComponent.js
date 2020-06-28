@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Menu, Icon, Segment } from 'semantic-ui-react';
+import { Menu, Icon, Segment, Divider } from 'semantic-ui-react';
 
 const CustomDisplayComponent = ({ title, children }) => {
   const [isOpen, setOpen] = useState(true);
 
   return (
     <>
-      <Menu.Menu style={{ borderTop: '1px solid white' }} className='channels'>
+      <Divider />
+      <Menu.Menu className='channels'>
         <Menu.Item>
           <span>
             <Icon
