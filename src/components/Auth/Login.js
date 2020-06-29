@@ -13,7 +13,7 @@ import firebase from '../../firebase';
 import { Link } from 'react-router-dom';
 
 // custom components
-import { Submit } from '../Buttons';
+import ActionButton from '../Buttons';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -77,9 +77,9 @@ const Login = () => {
               className={handleInputError(errors, 'password')}
             />
 
-            <Submit loading={loading} fluid size='large'>
+            <ActionButton loading={loading} fluid size='large'>
               Submit
-            </Submit>
+            </ActionButton>
           </Segment>
         </Form>
 

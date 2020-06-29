@@ -92,11 +92,55 @@ i.circular.icon {
 }
 
 .dropdown {
-  background: #4a154b;
+  background: #611f69 !important;
   color: #fff;
   border-radius: 3px;
 }
 
+.dropdown:hover {
+  background: #4a154b;
+}
+
 .ui.dropdown .menu {
   margin: 3rem 0;
+}
+
+/* Billboard */
+.ui.header.billboard {
+  font-size: 4rem;
+}
+
+.c-billboard__header__copy {
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem !important;
+  font-size: 2rem;
+}
+
+.billboard_buttons {
+  margin-bottom: 1rem;
+}
+
+/* primary button */
+.ui.button.btn-primary {
+  background: #611f69;
+  color: #fff;
+}
+
+.ui.button.btn-primary:hover {
+  background: #4a154b;
+}
+
+/* secondary button */
+.ui.button.btn-secondary {
+  background: #fff;
+  color: #611f69;
+  border: 1px solid #611f69;
+  margin: 0 6px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.ui.button.btn-secondary:hover {
+  border: 2px solid #4a154b;
 }
