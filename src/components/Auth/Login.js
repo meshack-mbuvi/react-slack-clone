@@ -49,10 +49,10 @@ const Login = () => {
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h1' icon color='violet' textAlign='center'>
           <Icon name='code branch' color='violet' />
-          Login to DevChat
+          Login to your workspace
         </Header>
         <Form size='large' onSubmit={onSubmit}>
-          <Segment stacked>
+          <Segment>
             <Form.Input
               fluid
               name='email'
