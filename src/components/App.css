@@ -1,8 +1,8 @@
 html,
 body,
 .app {
-  /* height: 100vh; */
-  background: #eee;
+  height: 100vh;
+  background: #fff;
   padding: 1em;
 }
 
@@ -50,7 +50,7 @@ i.circular.icon {
 
 .ui.list > .item:hover {
   cursor: pointer;
-  background: green !important;
+  background: #350d36 !important;
 }
 .ui.list > .item.active {
   background: #1164a3 !important;
@@ -74,4 +74,15 @@ i.circular.icon {
 
 .ui.input > input:focus {
   border: none;
+}
+
+.ui.button.submit,
+.ui.button.submit:hover {
+  background-color: #4a154b;
+  color: #fff;
+}
+
+.ui.button.submit:hover {
+  text-decoration: none;
+  opacity: 0.9;
 }

@@ -12,6 +12,9 @@ import firebase from '../../firebase';
 
 import { Link } from 'react-router-dom';
 
+// custom components
+import { Submit } from '../Buttons';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -47,8 +50,7 @@ const Login = () => {
   return (
     <Grid textAlign='center' verticalAlign='middle' className='app'>
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as='h1' icon color='violet' textAlign='center'>
-          <Icon name='code branch' color='violet' />
+        <Header as='h1' icon textAlign='center'>
           Login to your workspace
         </Header>
         <Form size='large' onSubmit={onSubmit}>
@@ -56,7 +58,6 @@ const Login = () => {
             <Form.Input
               fluid
               name='email'
-              icon='mail'
               value={email}
               iconPosition='left'
               onChange={(e) => setEmail(e.target.value)}
@@ -68,7 +69,6 @@ const Login = () => {
             <Form.Input
               fluid
               name='password'
-              icon='lock'
               value={password}
               iconPosition='left'
               onChange={(e) => setPassword(e.target.value)}
@@ -77,15 +77,9 @@ const Login = () => {
               className={handleInputError(errors, 'password')}
             />
 
-            <Button
-              disabled={loading}
-              className={loading ? 'loading' : ''}
-              color='violet'
-              fluid
-              size='large'
-            >
+            <Submit loading={loading} fluid size='large'>
               Submit
-            </Button>
+            </Submit>
           </Segment>
         </Form>
 
