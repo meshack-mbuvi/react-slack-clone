@@ -82,7 +82,21 @@ i.circular.icon {
   color: #fff;
 }
 
+.ui.menu a {
+  color: #1d1d1d;
+}
+
 .ui.button.submit:hover {
   text-decoration: none;
   opacity: 0.9;
+}
+
+.dropdown {
+  background: #4a154b;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.ui.dropdown .menu {
+  margin: 3rem 0;
 }

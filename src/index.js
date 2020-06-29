@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import Login from './components/Auth/Login';
-import Register from './components/Auth/Register';
+
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -18,6 +16,12 @@ import rootReducer from './reducers';
 import { setUser, clearUser } from './actions';
 import Spinner from './Spinner';
 
+// components
+import Home from './components/Home';
+import App from './components/App';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+
 const store = createStore(rootReducer, composeWithDevTools());
 
 const Root = (props) => {
@@ -30,7 +34,7 @@ const Root = (props) => {
         setUser(user);
         history.push('/');
       } else {
-        history.push('/login');
+        // history.push('/login');
         clearUser();
       }
     });
@@ -39,7 +43,9 @@ const Root = (props) => {
     <Spinner />
   ) : (
     <Switch>
-      <Route exact path='/' component={App} />
+      <Route exact path='/' component={Home} />
+
+      {/* <Route path='/' component={App} /> */}
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
     </Switch>
